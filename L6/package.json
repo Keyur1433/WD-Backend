@@ -4,7 +4,8 @@
   "description": "backend - youtube",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [
     "node"
@@ -15,5 +16,8 @@
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "mongoose": "^8.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
   }
 }
