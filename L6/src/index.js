@@ -1,3 +1,5 @@
+//  Approach-2
+
 // Method-1 to import "dotenv"
 // require("dotenv").config({path: "./env"})
 
@@ -5,7 +7,6 @@
 import dotenv from "dotenv";
 import connectDB from "../db/index.js";
 
-//  Approach-2
 
 // Method-2 to import "dotenv"
 dotenv.config({
@@ -13,6 +14,28 @@ dotenv.config({
 })
 
 connectDB()
+        .then(() => {
+                // If server cann not get any port from "process.env.PORT", then it can use port "8000"
+                app.listen(process.env.PORT || 8000,()=>{
+                        console.log(`server is running at port: ${process.env.PORT}`);
+                }) 
+        })
+        .catch((error) => {
+        console.log("MONGODB connection failed !! ", error);
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //  Approach-1
