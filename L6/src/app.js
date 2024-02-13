@@ -14,5 +14,13 @@ app.use(cors({
 app.use(express.json({ limit: "16kb" })); // Parse JSON requests with a limit of 16kb
 app.use(express.urlencoded({ extended: true, limit: "16kb" })); // Parse URL-encoded requests with a limit of 16kb
 app.use(express.static("public")); // Serve static files from the "public" directory
+app.use(cookieParser());
+
+// Routes import
+import userRouter from "./routes/user.routes.js"
+
+//Routes declaration
+app.use("/api/v1/users", userRouter)
+
 
 export { app }; // Export the Express application instance
