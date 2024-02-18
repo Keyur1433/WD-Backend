@@ -120,8 +120,14 @@ const logoutUser = asyncHandler(async (req, res) => {
     // Remove refresh token from the user document
     await User.findByIdAndUpdate(
         req.user._id,
-        { $set: { refreshToken: undefined } },
-        { new: true }
+        {
+            $unset: {
+                refreshToken: 1 // this removes the field from document
+            }
+        },
+        {
+            new: true
+        }
     );
 
     // Clear cookies and send response
@@ -388,14 +394,14 @@ const getWatchHistory = asyncHandler(async (req, res) => {
     ])
 
     return res
-    .status(200)
-    .json(
-        new ApiResponse(
-            200, 
-            user[0].watchHistory,
-            "Watch history fetched successfully"
+        .status(200)
+        .json(
+            new ApiResponse(
+                200,
+                user[0].watchHistory,
+                "Watch history fetched successfully"
+            )
         )
-    )
 })
 
 
